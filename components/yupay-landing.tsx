@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import RequestModal from "@/components/request-modal"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion" // Import Accordion
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Lightbox from "@/components/lightbox"
 import {
   CheckCircle2,
   ShieldCheck,
@@ -244,6 +245,15 @@ export default function YupayLanding() {
   useScrollAnimation()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxImages, setLightboxImages] = useState<{ src: string; alt: string }[]>([])
+  const [lightboxStartIndex, setLightboxStartIndex] = useState(0)
+
+  const handleImageClick = (images: { src: string; alt: string }[], index: number) => {
+    setLightboxImages(images)
+    setLightboxStartIndex(index)
+    setLightboxOpen(true)
+  }
 
   const handleRequestPlan = (plan: Plan) => {
     setSelectedPlan(plan)
@@ -339,12 +349,6 @@ export default function YupayLanding() {
     {
       question: "¿Qué necesito para instalar YUPAY?",
       answer:
-        "Solo un dominio (o subdominio) donde quieras que se cargue la plataforma. La instalación es manual y personalizada: yo mismo la haré contigo paso a paso. YUPAY funciona como un SaaS; eso significa que la aplicación vive en nuestros servidores, pero la disfrutas con tu propia URL (Y branding en caso de tener la licencia correspondiente). Nos ocuparemos de apuntar tu dominio, subir la instancia y dejar todo listo para que cobres desde el primer minuto.",
-      images: [],
-    },
-    {
-      question: "¿Qué necesito para instalar YUPAY?",
-      answer:
         "Solo un dominio (o subdominio) donde quieras que se cargue la plataforma. La instalación es manual y personalizada: yo mismo la haré contigo paso a paso. YUPAY funciona como un SaaS; eso significa que la aplicación vive en nuestros servidores, pero la disfrutas con tu propia URL (Y branding en caso de tener la licencia correspondiente). Me ocupo de apuntar tu dominio, subir la instancia y dejar todo listo para que cobres desde el primer minuto.",
       images: [],
     },
@@ -414,16 +418,28 @@ export default function YupayLanding() {
         "Tus clientes disfrutan de una experiencia fluida y segura. Primero, ven una vista previa de los archivos con una marca de agua para proteger tu contenido (solo en imágenes y pdf, en el resto de archivos no ven preview). Una vez completado el pago a través de Stripe, se desbloquean automáticamente los enlaces de descarga para los archivos originales en alta resolución. Pueden acceder a sus compras y volver a descargar los archivos en cualquier momento desde su panel de cliente personal.",
       images: [
         {
-          src: "/placeholder.svg?width=400&height=300&text=Vista+Previa+con+Marca+de+Agua&bgColor=191919&textColor=C1DF1F",
-          alt: "Vista previa de galería con marca de agua",
+          src: "/transaccion4.png",
+          alt: "El cliente recibe un correo electrónico con la transacción",
         },
         {
-          src: "/placeholder.svg?width=400&height=300&text=Descarga+Segura+Post-Pago&bgColor=191919&textColor=C1DF1F",
-          alt: "Botón de descarga habilitado tras el pago",
+          src: "/transaccion1.png",
+          alt: "Accede a la transacción y ve toda la información",
         },
         {
-          src: "/placeholder.svg?width=400&height=300&text=Panel+de+Cliente+con+Compras&bgColor=191919&textColor=C1DF1F",
-          alt: "Panel de cliente mostrando historial de compras",
+          src: "/transaccion2.png",
+          alt: "Ejemplo de vista previa de una imagen con marca de agua",
+        },
+        {
+          src: "/transaccion3.png",
+          alt: "Ejemplo de vista previa de un pdf con marca de agua",
+        },
+        {
+          src: "/transaccion5.png",
+          alt: "Una vez abonada, se le permite descargar los originales de manera individual o en zip",
+        },
+        {
+          src: "/transaccion6.png",
+          alt: "El cliente dispone siempre de un perfil donde consultar todas las compras realizadas",
         },
       ],
     },
@@ -801,14 +817,19 @@ export default function YupayLanding() {
                         {faq.images.map((image, imgIndex) => (
                           <div
                             key={imgIndex}
-                            className="relative aspect-w-4 aspect-h-3 rounded-md overflow-hidden shadow-custom-dark"
+                            className="relative aspect-[4/3] rounded-md overflow-hidden shadow-custom-dark cursor-pointer group"
+                            onClick={() => handleImageClick(faq.images, imgIndex)}
                           >
-                            <Image 
+                            <Image
                               src={image.src || "/placeholder.svg"}
                               alt={image.alt}
                               layout="fill"
                               objectFit="cover"
+                              className="group-hover:scale-105 transition-transform duration-300"
                             />
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <Eye className="w-8 h-8 text-white" />
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -876,6 +897,9 @@ export default function YupayLanding() {
             </div>
           </DialogContent>
         </Dialog>
+      )}
+      {lightboxOpen && (
+        <Lightbox images={lightboxImages} startIndex={lightboxStartIndex} onClose={() => setLightboxOpen(false)} />
       )}
     </div>
   )
