@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import RequestModal from "@/components/request-modal"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion" // Import Accordion
 import {
   CheckCircle2,
   ShieldCheck,
@@ -334,6 +335,106 @@ export default function YupayLanding() {
     },
   ]
 
+  const faqs = [
+    {
+      question: "¿Qué necesito para instalar YUPAY?",
+      answer:
+        "Solo un dominio (o subdominio) donde quieras que se cargue la plataforma. La instalación es manual y personalizada: yo mismo la haré contigo paso a paso. YUPAY funciona como un SaaS; eso significa que la aplicación vive en nuestros servidores, pero la disfrutas con tu propia URL (Y branding en caso de tener la licencia correspondiente). Nos ocuparemos de apuntar tu dominio, subir la instancia y dejar todo listo para que cobres desde el primer minuto.",
+      images: [],
+    },
+    {
+      question: "¿Qué necesito para instalar YUPAY?",
+      answer:
+        "Solo un dominio (o subdominio) donde quieras que se cargue la plataforma. La instalación es manual y personalizada: yo mismo la haré contigo paso a paso. YUPAY funciona como un SaaS; eso significa que la aplicación vive en nuestros servidores, pero la disfrutas con tu propia URL (Y branding en caso de tener la licencia correspondiente). Me ocupo de apuntar tu dominio, subir la instancia y dejar todo listo para que cobres desde el primer minuto.",
+      images: [],
+    },
+    {
+      question: "¿Tengo acceso al código de la plataforma?",
+      answer:
+        "No. El core es cerrado para garantizar seguridad y estabilidad. Dicho esto, con el plan Enterprise puedo desarrollar módulos o integraciones a medida. Pregúntame sin miedo si necesitas algo especial.",
+      images: [],
+    },
+    {
+      question: "¿Cómo voy a recibir el dinero por mis ventas?",
+      answer:
+        "Los cobros se procesan a través de Stripe: tarjetas, suscripciones, pagos únicos… YUPAY no actúa de intermediario, el dinero entra directo en tu cuenta de Stripe (cualquiera puede disponer de una cuenta de Stripe). Durante la instalación configuramos juntos tu cuenta, la vinculamos a YUPAY y compruebas en vivo que los importes llegan a tu banco.",
+      images: [],
+    },
+    {
+      question: "¿Qué pasa si me quedo sin espacio?",
+      answer:
+        "Cuando tu almacenamiento supera el límite del plan, el sistema te avisa. A partir de ahí puedes o bien borrar transacciones/archivos antiguos o bien pedirme ampliar o ajustar tu plan según lo que realmente necesites. Nada se bloquea sin previo aviso, así que estarás tranquilo.",
+      images: [],
+    },
+    {
+      question: "¿Desde qué correo se envían correos a mis clientes?",
+      answer:
+        "Desde el que tú decidas. Durante la instalación configuramos la cuenta (dominio, SPF, DKIM, etc.) para que los emails salgan con tu nombre desde nuestro servidor y con firma Sendgrid para asegurarte de que siempre llega y eviten la carpeta de spam. Te acompaño en todo el proceso.",
+      images: [],
+    },
+    {
+      question: "¿Puedo añadir o eliminar archivos en una transacción?",
+      answer:
+        "Aquí va un pequeño easter egg 🤫: aunque tu plan limite las subidas iniciales (p. ej. 2 GB por transacción), una vez creada la transacción puedes seguir adjuntando archivos hasta agotar el espacio total de la cuenta. Mientras la transacción esté pendiente de pago puedes añadir y eliminar archivos sin problema. Una vez pagada solo podrás añadir, nunca eliminar, para mantener la integridad de la operación. Si necesitas borrar todo, puedes eliminar la transacción entera (tras doble confirmación). Si le das a “Eliminar”… ¡la culpa es tuya!",
+      images: [],
+    },
+    {
+      question: "¿Puedo usar una licencia en varios dominios?",
+      answer:
+        "No. Cada licencia queda amarrada al dominio/subdominio que me digas. El sistema valida tanto la licencia como la URL de instalación. Asegúrate de elegir bien tu dominio antes de lanzar.",
+      images: [],
+    },
+    {
+      question: "¿Hay permanencia o puedo darme de baja cuando quiera?",
+      answer:
+        "No hay permanencia ni letra pequeña. Cancelas cuando quieras desde tu panel y el servicio dejará de facturarte en el siguiente ciclo. Tus datos quedan disponibles hasta el fin del ciclo de facturación por si quieres volver.",
+      images: [],
+    },
+    {
+      question: "¿Qué soporte tengo incluido?",
+      answer:
+        "En el plan BASIC recibes soporte por correo electrónico con respuesta en 24-48 h; en el plan PRO se añade chat prioritario y la media baja a unas 12 h; y en el plan MAX disfrutas además de atención telefónica y por Whatsapp, SLA garantizado y un gestor técnico dedicado.",
+      images: [],
+    },
+    {
+      question: "¿Se actualiza la plataforma automáticamente?",
+      answer:
+        "Sí. Cada nueva versión se despliega en los servidores sin que tengas que mover un dedo. Te avisaré de los cambios más importantes y, si afectan a tu flujo, te ayudaré a adaptarlos.",
+      images: [],
+    },
+    {
+      question: "¿Qué métodos de pago acepta Stripe a través de YUPAY, además de tarjeta?",
+      answer:
+        "Depende de tu país y de lo que actives en Stripe, pero suelen estar disponibles: Apple Pay, Google Pay, Bizum, iDEAL, Bancontact, Klarna, SEPA Débito, pagos diferidos, wallets locales y muchas más. Solo tienes que habilitarlas en tu dashboard de Stripe; YUPAY las mostrará automáticamente.",
+      images: [],
+    },
+    {
+      question: "¿Cómo ven mis clientes los archivos y cómo los descargan?",
+      answer:
+        "Tus clientes disfrutan de una experiencia fluida y segura. Primero, ven una vista previa de los archivos con una marca de agua para proteger tu contenido (solo en imágenes y pdf, en el resto de archivos no ven preview). Una vez completado el pago a través de Stripe, se desbloquean automáticamente los enlaces de descarga para los archivos originales en alta resolución. Pueden acceder a sus compras y volver a descargar los archivos en cualquier momento desde su panel de cliente personal.",
+      images: [
+        {
+          src: "/placeholder.svg?width=400&height=300&text=Vista+Previa+con+Marca+de+Agua&bgColor=191919&textColor=C1DF1F",
+          alt: "Vista previa de galería con marca de agua",
+        },
+        {
+          src: "/placeholder.svg?width=400&height=300&text=Descarga+Segura+Post-Pago&bgColor=191919&textColor=C1DF1F",
+          alt: "Botón de descarga habilitado tras el pago",
+        },
+        {
+          src: "/placeholder.svg?width=400&height=300&text=Panel+de+Cliente+con+Compras&bgColor=191919&textColor=C1DF1F",
+          alt: "Panel de cliente mostrando historial de compras",
+        },
+      ],
+    },
+    {
+      question: "¿Puedo probarlo?",
+      answer:
+        "¡Claro! Escríbeme a alamas@dro.studio y te paso las credenciales del entorno de pruebas. Eso sí, el entorno de pago es de verdad: si decides abonar algo… no prometo devoluciones 😉",
+      images: [],
+    },
+  ]
+
   return (
     <div className="flex-1 bg-brand-black text-brand-white">
       {/* Hero Section */}
@@ -368,22 +469,22 @@ export default function YupayLanding() {
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-8 items-center relative z-10">
           <div className="text-center lg:text-left">
             <div className="relative w-50 h-12 md:w-70 md:h-16 mb-6 mx-auto">
-			  <Image
-				src="/blanco.png?width=450&height=450&text=Gestion+Facil&bgColor=191919&textColor=C1DF1F"
-				alt="Logo yupay"
-				priority
-				className="object-contain"
-				fill
-			  />
-			</div>
+              <Image
+                src="/blanco.png?width=450&height=450&text=Gestion+Facil&bgColor=191919&textColor=C1DF1F"
+                alt="Logo yupay"
+                priority
+                className="object-contain"
+                fill
+              />
+            </div>
 
             <p className="text-2xl md:text-3xl font-light text-brand-gray-text mb-8">
               Transforma tu contenido digital en ingresos.
             </p>
             <p className="mt-6 text-lg md:text-xl text-brand-gray-text">
-              <strong>Se acabó eso de perseguir a los clientes para que te paguen por tu trabajo.</strong> Vende tus creaciones, fotografías, cursos,
-			  plantillas o cualquier archivo digital de forma segura, profesional y sin
-              complicaciones. YUPAY es la plataforma todo en uno que te da el control total sobre tus ventas. 
+              <strong>Se acabó eso de perseguir a los clientes para que te paguen por tu trabajo.</strong> Vende tus
+              creaciones, fotografías, cursos, plantillas o cualquier archivo digital de forma segura, profesional y sin
+              complicaciones. YUPAY es la plataforma todo en uno que te da el control total sobre tus ventas.
             </p>
             <Button
               size="lg"
@@ -426,8 +527,9 @@ export default function YupayLanding() {
           <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">¿Qué es YUPAY?</h2>
           <p className="mt-4 text-lg text-brand-gray-text max-w-3xl mx-auto">
             YUPAY es una plataforma completa de comercio digital que permite a profesionales, agencias y empresas vender
-            archivos digitales de forma segura, automatizada y profesional, sin perder en ningún momento su trazabilidad. Es la solución
-			perfecta para fotógrafos, diseñadores, desarrolladores, consultores y cualquier negocio que venda contenido digital.
+            archivos digitales de forma segura, automatizada y profesional, sin perder en ningún momento su
+            trazabilidad. Es la solución perfecta para fotógrafos, diseñadores, desarrolladores, consultores y cualquier
+            negocio que venda contenido digital.
           </p>
         </div>
       </section>
@@ -464,7 +566,7 @@ export default function YupayLanding() {
         title="Panel de Administración Intuitivo y Potente"
         imageAlt="Panel de Administración de YUPAY"
         imageQuery="Panel de control de administrador YUPAY con graficas y tablas"
-		imageUrl="placeholder-3.jpg"
+        imageUrl="placeholder-3.jpg"
         bgColor="bg-brand-gray-deep" // Alternating dark background
       >
         <p>
@@ -492,7 +594,7 @@ export default function YupayLanding() {
         imageAlt="Experiencia de Cliente en YUPAY"
         imageLeft={true}
         imageQuery="Interfaz de cliente YUPAY mostrando historial de compras y descargas"
-		imageUrl="placeholder-4.jpg"
+        imageUrl="placeholder-4.jpg"
         bgColor="bg-brand-black" // Alternating dark background
       >
         <p>
@@ -503,13 +605,15 @@ export default function YupayLanding() {
             <strong>Registro Automático:</strong> Acceso instantáneo para clientes tras su primera compra.
           </li>
           <li>
-            <strong>Previews Interactivas:</strong> Previsualiza imágenes y documentos en baja resolución y con marca de agua para evitar uso inapropiado.
+            <strong>Previews Interactivas:</strong> Previsualiza imágenes y documentos en baja resolución y con marca de
+            agua para evitar uso inapropiado.
           </li>
           <li>
             <strong>Descarga Segura Post-Pago:</strong> Enlaces únicos y protegidos para cada archivo.
           </li>
           <li>
-            <strong>Historial de Compras:</strong> Panel personal para acceder a todas las compras, descarga individual y en lote.
+            <strong>Historial de Compras:</strong> Panel personal para acceder a todas las compras, descarga individual
+            y en lote.
           </li>
           <li>
             <strong>Interfaz Responsive Móvil:</strong> Experiencia fluida en cualquier dispositivo.
@@ -660,6 +764,59 @@ export default function YupayLanding() {
               ¹ La retención de archivos indica el tiempo que los archivos de una transacción permanecen disponibles
               para el cliente después de la compra antes de ser eliminados automáticamente para liberar espacio.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="py-16 md:py-24 bg-brand-black">
+        <div className="container mx-auto px-6">
+          <div
+            className="text-center mb-16 animate-on-scroll"
+            style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
+          >
+            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Preguntas Frecuentes</h2>
+            <p className="mt-4 text-lg text-brand-gray-text max-w-2xl mx-auto">
+              Resolvemos algunas de las dudas más comunes sobre YUPAY.
+            </p>
+          </div>
+          <div
+            className="max-w-4xl mx-auto animate-on-scroll"
+            style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
+          >
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="bg-brand-gray-dark border-b border-brand-gray-medium rounded-lg mb-4 px-6"
+                >
+                  <AccordionTrigger className="text-left text-lg font-medium text-brand-white hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-6">
+                    <p className="text-brand-gray-text">{faq.answer}</p>
+                    {faq.images.length > 0 && (
+                      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {faq.images.map((image, imgIndex) => (
+                          <div
+                            key={imgIndex}
+                            className="relative aspect-w-4 aspect-h-3 rounded-md overflow-hidden shadow-custom-dark"
+                          >
+                            <Image 
+                              src={image.src || "/placeholder.svg"}
+                              alt={image.alt}
+                              layout="fill"
+                              objectFit="cover"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
