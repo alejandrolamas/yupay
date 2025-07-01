@@ -59,20 +59,20 @@ const plans: Plan[] = [
   {
     id: "basic",
     name: "BASIC",
-    price: "$19",
+    price: "19€",
     priceDetails: "/ mes",
     storage: "50 GB",
     transactionLimit: "1 GB",
     fileRetention: "7 días",
     features: [
-      { text: "Soporte Básico", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte por Email", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Analíticas Básicas", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte Prioritario", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
-      { text: "Soporte Dedicado", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
-      { text: "Marca Blanca (Custom Branding)", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
+      { text: "Soporte básico", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte por email", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Analíticas básicas", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte prioritario", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
+      { text: "Soporte dedicado", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
+      { text: "Marca blanca (Custom branding)", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
       {
-        text: "Licencia Comercial / Acceso Código",
+        text: "Licencia comercial / acceso código",
         included: false,
         icon: <XCircle className="w-5 h-5 text-red-500" />,
       },
@@ -81,21 +81,21 @@ const plans: Plan[] = [
   {
     id: "pro",
     name: "PRO",
-    price: "$49",
+    price: "49€",
     priceDetails: "/ mes",
     highlight: true,
     storage: "250 GB",
     transactionLimit: "2 GB",
     fileRetention: "Ilimitada",
     features: [
-      { text: "Soporte Básico", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte por Email", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Analíticas Básicas", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte Prioritario", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte Dedicado", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
-      { text: "Marca Blanca (Custom Branding)", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
+      { text: "Soporte básico", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte por email", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Analíticas básicas", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte prioritario", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte dedicado", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
+      { text: "Marca blanca (Custom branding)", included: false, icon: <XCircle className="w-5 h-5 text-red-500" /> },
       {
-        text: "Licencia Comercial / Acceso Código",
+        text: "Licencia comercial / acceso código",
         included: false,
         icon: <XCircle className="w-5 h-5 text-red-500" />,
       },
@@ -104,24 +104,24 @@ const plans: Plan[] = [
   {
     id: "max",
     name: "MAX",
-    price: "$149",
+    price: "149€",
     priceDetails: "/ mes",
     storage: "2 TB",
     transactionLimit: "5 GB",
     fileRetention: "Ilimitada",
     features: [
-      { text: "Soporte Básico", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte por Email", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Analíticas Básicas", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Soporte Prioritario", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte básico", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte por email", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Analíticas básicas", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte prioritario", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
       { text: "Soporte Dedicado", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
       {
-        text: "Marca Blanca (Custom Branding)",
+        text: "Marca blanca (Custom branding)",
         included: true,
         icon: <CheckCircle2 className="w-5 h-5 text-brand-green" />,
       },
       {
-        text: "Licencia Comercial / Acceso Código",
+        text: "Licencia comercial / acceso código",
         included: false,
         icon: <XCircle className="w-5 h-5 text-red-500" />,
       },
@@ -137,19 +137,19 @@ const plans: Plan[] = [
     fileRetention: "Ilimitada",
     features: [
       { text: "Todo lo del plan MAX", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
-      { text: "Almacenamiento Personalizado", included: "custom", icon: <Settings className="w-5 h-5 text-sky-400" /> },
+      { text: "Almacenamiento personalizado", included: "custom", icon: <Settings className="w-5 h-5 text-sky-400" /> },
       {
-        text: "Límite Transacción Personalizado",
+        text: "Límite transacción personalizado",
         included: "custom",
         icon: <Settings className="w-5 h-5 text-sky-400" />,
       },
-      { text: "Soporte Dedicado VIP", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
+      { text: "Soporte dedicado VIP", included: true, icon: <CheckCircle2 className="w-5 h-5 text-brand-green" /> },
       {
-        text: "Licencia Comercial / Acceso Código",
+        text: "Licencia comercial / acceso código",
         included: true,
         icon: <CheckCircle2 className="w-5 h-5 text-brand-green" />,
       },
-      { text: "Integraciones Personalizadas", included: "custom", icon: <Settings className="w-5 h-5 text-sky-400" /> },
+      { text: "Integraciones personalizadas", included: "custom", icon: <Settings className="w-5 h-5 text-sky-400" /> },
     ],
   },
 ]
@@ -248,6 +248,7 @@ export default function YupayLanding() {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxImages, setLightboxImages] = useState<{ src: string; alt: string }[]>([])
   const [lightboxStartIndex, setLightboxStartIndex] = useState(0)
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly")
 
   const handleImageClick = (images: { src: string; alt: string }[], index: number) => {
     setLightboxImages(images)
@@ -262,49 +263,51 @@ export default function YupayLanding() {
 
   const mainFeatures = [
     {
-      title: "Seguridad Avanzada",
+      title: "Pagos seguros con Stripe",
       description:
-        "Protegemos tu contenido con JWT, control de acceso, archivos privados y previews con marca de agua.",
-      icon: <ShieldCheck className="w-8 h-8 mb-3 text-brand-green" />,
-    },
-    {
-      title: "Pagos Seguros con Stripe",
-      description: "Acepta pagos en múltiples monedas (USD/EUR) de forma segura y automatizada con el líder mundial.",
+        "Recibe pagos directamente en tu cuenta en múltiples divisas de forma segura y automatizada con el líder mundial.",
       icon: <CreditCard className="w-8 h-8 mb-3 text-brand-green" />,
     },
     {
-      title: "Comunicación Automatizada",
+      title: "Seguridad avanzada",
       description:
-        "Notificaciones por email para ti y tus clientes, en español e inglés, manteniendo a todos informados.",
+        "Nadie podrá robar tu contenido. Protegemos tu contenido con JWT, control de acceso, archivos privados y previews con marca de agua.",
+      icon: <ShieldCheck className="w-8 h-8 mb-3 text-brand-green" />,
+    },
+    {
+      title: "Comunicación eficiente",
+      description:
+        "Notificaciones por email para ti y tus clientes, manteniendo a todos informados. Evita caer en SPAM gracias a nuestra integración con Sendgrid",
       icon: <Mail className="w-8 h-8 mb-3 text-brand-green" />,
     },
     {
       title: "Protección Anti-Robo",
-      description: "Tus archivos originales solo son accesibles tras el pago. Las vistas previas están protegidas.",
+      description:
+        "Tus archivos originales solo serán accesibles tras el pago. Las vistas previas están protegidas y se renderizan en baja calidad y con marca de agua.",
       icon: <Lock className="w-8 h-8 mb-3 text-brand-green" />,
     },
   ]
 
   const securityAndReliabilityFeatures = [
     {
-      title: "Tecnología Cloud Robusta",
-      description: "Infraestructura en la nube escalable y de alta disponibilidad para garantizar el acceso continuo.",
+      title: "Tecnología Cloud robusta",
+      description:
+        "Infraestructura escalable en la nube de AWS y de alta disponibilidad que garantiza el acceso continuado.",
       icon: <Cloud className="w-7 h-7 mr-3 text-brand-green" />,
     },
     {
-      title: "Copias de Seguridad Diarias",
-      description: "Tus datos y archivos se respaldan automáticamente todos los días para tu tranquilidad.",
+      title: "Copias de seguridad diarias",
+      description: "Los datos y archivos se respaldan automáticamente a diario para tu tranquilidad.",
       icon: <DatabaseZap className="w-7 h-7 mr-3 text-brand-green" />,
     },
     {
-      title: "Estándares de Seguridad",
-      description: "Cumplimos con las mejores prácticas de seguridad para proteger tu información sensible.",
+      title: "Estándares de seguridad",
+      description: "Cumplimos con las mejores prácticas de seguridad para proteger la información sensible.",
       icon: <ShieldAlert className="w-7 h-7 mr-3 text-brand-green" />,
     },
     {
-      title: "Control de Acceso Estricto",
-      description:
-        "Solo las personas autorizadas pueden acceder a los archivos, garantizando su privacidad y seguridad.",
+      title: "Control de acceso estricto",
+      description: "Solo las personas con autorización tienen acceso a tus archivos.",
       icon: <Eye className="w-7 h-7 mr-3 text-brand-green" />,
     },
   ]
@@ -347,55 +350,55 @@ export default function YupayLanding() {
 
   const faqs = [
     {
-      question: "¿Qué necesito para instalar YUPAY?",
+      question: "¿Qué se necesita para instalar YUPAY?",
       answer:
         "Solo un dominio (o subdominio) donde quieras que se cargue la plataforma. La instalación es manual y personalizada: yo mismo la haré contigo paso a paso. YUPAY funciona como un SaaS; eso significa que la aplicación vive en nuestros servidores, pero la disfrutas con tu propia URL (Y branding en caso de tener la licencia correspondiente). Me ocupo de apuntar tu dominio, subir la instancia y dejar todo listo para que cobres desde el primer minuto.",
       images: [],
     },
     {
-      question: "¿Tengo acceso al código de la plataforma?",
+      question: "¿El código fuente es accesible?",
       answer:
         "No. El core es cerrado para garantizar seguridad y estabilidad. Dicho esto, con el plan Enterprise puedo desarrollar módulos o integraciones a medida. Pregúntame sin miedo si necesitas algo especial.",
       images: [],
     },
     {
-      question: "¿Cómo voy a recibir el dinero por mis ventas?",
+      question: "¿Cómo se reciben los pagos por las ventas?",
       answer:
         "Los cobros se procesan a través de Stripe: tarjetas, suscripciones, pagos únicos… YUPAY no actúa de intermediario, el dinero entra directo en tu cuenta de Stripe (cualquiera puede disponer de una cuenta de Stripe). Durante la instalación configuramos juntos tu cuenta, la vinculamos a YUPAY y compruebas en vivo que los importes llegan a tu banco.",
       images: [],
     },
     {
-      question: "¿Qué pasa si me quedo sin espacio?",
+      question: "¿Qué ocurre si se agota el espacio del plan contratado?",
       answer:
         "Cuando tu almacenamiento supera el límite del plan, el sistema te avisa. A partir de ahí puedes o bien borrar transacciones/archivos antiguos o bien pedirme ampliar o ajustar tu plan según lo que realmente necesites. Nada se bloquea sin previo aviso, así que estarás tranquilo.",
       images: [],
     },
     {
-      question: "¿Desde qué correo se envían correos a mis clientes?",
+      question: "¿Desde qué correo se envían avisos a los clientes?",
       answer:
         "Desde el que tú decidas. Durante la instalación configuramos la cuenta (dominio, SPF, DKIM, etc.) para que los emails salgan con tu nombre desde nuestro servidor y con firma Sendgrid para asegurarte de que siempre llega y eviten la carpeta de spam. Te acompaño en todo el proceso.",
       images: [],
     },
     {
-      question: "¿Puedo añadir o eliminar archivos en una transacción?",
+      question: "¿Se pueden añadir o eliminar archivos en una transacción?",
       answer:
-        "Aquí va un pequeño easter egg 🤫: aunque tu plan limite las subidas iniciales (p. ej. 2 GB por transacción), una vez creada la transacción puedes seguir adjuntando archivos hasta agotar el espacio total de la cuenta. Mientras la transacción esté pendiente de pago puedes añadir y eliminar archivos sin problema. Una vez pagada solo podrás añadir, nunca eliminar, para mantener la integridad de la operación. Si necesitas borrar todo, puedes eliminar la transacción entera (tras doble confirmación). Si le das a “Eliminar”… ¡la culpa es tuya!",
+        "¡Aquí va un pequeño easter egg!: aunque tu plan limite las subidas iniciales (p. ej. 2 GB por transacción), una vez creada la transacción puedes seguir adjuntando archivos hasta agotar el espacio total de la cuenta. Mientras la transacción esté pendiente de pago puedes añadir y eliminar archivos sin problema. Una vez pagada solo podrás añadir, nunca eliminar, para mantener la integridad de la operación. Si necesitas borrar todo, puedes eliminar la transacción entera (tras doble confirmación). Si le das a “Eliminar”… ¡la culpa es tuya!",
       images: [],
     },
     {
-      question: "¿Puedo usar una licencia en varios dominios?",
+      question: "¿Se puede usar una licencia en varios dominios?",
       answer:
-        "No. Cada licencia queda amarrada al dominio/subdominio que me digas. El sistema valida tanto la licencia como la URL de instalación. Asegúrate de elegir bien tu dominio antes de lanzar.",
+        "No. Cada licencia queda amarrada al dominio/subdominio que elijas. El sistema valida tanto la licencia como la URL de instalación. Asegúrate de elegir bien tu dominio antes de lanzar.",
       images: [],
     },
     {
-      question: "¿Hay permanencia o puedo darme de baja cuando quiera?",
+      question: "¿Hay permanencia?",
       answer:
         "No hay permanencia ni letra pequeña. Cancelas cuando quieras desde tu panel y el servicio dejará de facturarte en el siguiente ciclo. Tus datos quedan disponibles hasta el fin del ciclo de facturación por si quieres volver.",
       images: [],
     },
     {
-      question: "¿Qué soporte tengo incluido?",
+      question: "¿Qué soporte se incluye?",
       answer:
         "En el plan BASIC recibes soporte por correo electrónico con respuesta en 24-48 h; en el plan PRO se añade chat prioritario y la media baja a unas 12 h; y en el plan MAX disfrutas además de atención telefónica y por Whatsapp, SLA garantizado y un gestor técnico dedicado.",
       images: [],
@@ -407,13 +410,13 @@ export default function YupayLanding() {
       images: [],
     },
     {
-      question: "¿Qué métodos de pago acepta Stripe a través de YUPAY, además de tarjeta?",
+      question: "¿Qué métodos de pago acepta Stripe a través de YUPAY?",
       answer:
         "Depende de tu país y de lo que actives en Stripe, pero suelen estar disponibles: Apple Pay, Google Pay, Bizum, iDEAL, Bancontact, Klarna, SEPA Débito, pagos diferidos, wallets locales y muchas más. Solo tienes que habilitarlas en tu dashboard de Stripe; YUPAY las mostrará automáticamente.",
       images: [],
     },
     {
-      question: "¿Cómo ven mis clientes los archivos y cómo los descargan?",
+      question: "¿Cómo ven los clientes los archivos y cómo los descargan?",
       answer:
         "Tus clientes disfrutan de una experiencia fluida y segura. Primero, ven una vista previa de los archivos con una marca de agua para proteger tu contenido (solo en imágenes y pdf, en el resto de archivos no ven preview). Una vez completado el pago a través de Stripe, se desbloquean automáticamente los enlaces de descarga para los archivos originales en alta resolución. Pueden acceder a sus compras y volver a descargar los archivos en cualquier momento desde su panel de cliente personal.",
       images: [
@@ -498,16 +501,16 @@ export default function YupayLanding() {
               Transforma tu contenido digital en ingresos.
             </p>
             <p className="mt-6 text-lg md:text-xl text-brand-gray-text">
-              <strong>Se acabó eso de perseguir a los clientes para que te paguen por tu trabajo.</strong> Vende tus
-              creaciones, fotografías, cursos, plantillas o cualquier archivo digital de forma segura, profesional y sin
-              complicaciones. YUPAY es la plataforma todo en uno que te da el control total sobre tus ventas.
+              Se acabó <strong>perseguir</strong> a los clientes para que paguen por tus servicios. Vende tus sesiones
+              fotográficas, cursos, plantillas o cualquier archivo digital de manera segura y profesional, sin
+              complicaciones. YUPAY es la plataforma "todo en uno" que ofrece el control total sobre tus ventas.
             </p>
             <Button
               size="lg"
               className={`mt-12 px-10 py-6 text-lg rounded-lg shadow-custom-green transform hover:scale-105 transition-all duration-300 ${primaryButtonBase} ${primaryButtonHover}`}
               onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Descubre los Planes
+              Descubre los planes
             </Button>
           </div>
           <div
@@ -542,10 +545,10 @@ export default function YupayLanding() {
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">¿Qué es YUPAY?</h2>
           <p className="mt-4 text-lg text-brand-gray-text max-w-3xl mx-auto">
-            YUPAY es una plataforma completa de comercio digital que permite a profesionales, agencias y empresas vender
-            archivos digitales de forma segura, automatizada y profesional, sin perder en ningún momento su
-            trazabilidad. Es la solución perfecta para fotógrafos, diseñadores, desarrolladores, consultores y cualquier
-            negocio que venda contenido digital.
+            YUPAY es una <strong>plataforma completa de contenido digital</strong> que permite a profesionales, agencias
+            y empresas <strong>vender archivos digitales de forma segura, automatizada y profesional</strong>, sin
+            perder en ningún momento su trazabilidad. Es la solución perfecta para fotógrafos, diseñadores,
+            desarrolladores, consultores y cualquier negocio que venda contenido por internet.
           </p>
         </div>
       </section>
@@ -557,10 +560,7 @@ export default function YupayLanding() {
             className="text-center mb-16 animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">¿Por Qué Elegir YUPAY?</h2>
-            <p className="mt-4 text-lg text-brand-gray-text max-w-3xl mx-auto">
-              Monetización simplificada, seguridad robusta, experiencia profesional y control total.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">¿Por qué elegir YUPAY?</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {mainFeatures.map((feature, index) => (
@@ -579,28 +579,28 @@ export default function YupayLanding() {
       </section>
 
       <ParallaxSection
-        title="Panel de Administración Intuitivo y Potente"
+        title="Panel de administración intuitivo y potente"
         imageAlt="Panel de Administración de YUPAY"
         imageQuery="Panel de control de administrador YUPAY con graficas y tablas"
         imageUrl="placeholder-3.jpg"
-        bgColor="bg-brand-gray-deep" // Alternating dark background
+        bgColor="bg-brand-gray-deep"
       >
         <p>
-          Gestiona tu contenido digital sin esfuerzo. Con YUPAY, tienes un centro de mando completo para supervisar cada
-          aspecto de tus ventas.
+          Gestiona tu contenido digital sin esfuerzo. Con YUPAY, tendrás un centro de mando completo para supervisar
+          cada aspecto de tus ventas.
         </p>
         <ul className="mt-6 space-y-3 list-disc list-inside text-brand-gray-text">
           <li>
-            <strong>Dashboard con Métricas:</strong> Visualiza ingresos, ventas y actividad en tiempo real.
+            <strong>Dashboard con métricas:</strong> Visualiza ingresos, ventas y actividad en tiempo real.
           </li>
           <li>
             <strong>Gestión Drag & Drop:</strong> Sube y organiza archivos fácilmente.
           </li>
           <li>
-            <strong>Búsqueda Avanzada:</strong> Encuentra transacciones por cliente, fecha o estado.
+            <strong>Búsqueda avanzada:</strong> Encuentra transacciones por cliente, fecha o estado.
           </li>
           <li>
-            <strong>Edición Individual:</strong> Modifica detalles de archivos o transacciones específicas.
+            <strong>Edición individual:</strong> Modifica detalles de archivos o transacciones específicas.
           </li>
         </ul>
       </ParallaxSection>
@@ -611,28 +611,27 @@ export default function YupayLanding() {
         imageLeft={true}
         imageQuery="Interfaz de cliente YUPAY mostrando historial de compras y descargas"
         imageUrl="placeholder-4.jpg"
-        bgColor="bg-brand-black" // Alternating dark background
+        bgColor="bg-brand-black"
       >
-        <p>
-          Ofrece a tus clientes un proceso de compra transparente y seguro que genera confianza y fomenta la lealtad.
-        </p>
+        <p>Ofrece a tus clientes un proceso de compra seguro y confortable que promueva confianza y transparencia.</p>
         <ul className="mt-6 space-y-3 list-disc list-inside text-brand-gray-text">
           <li>
-            <strong>Registro Automático:</strong> Acceso instantáneo para clientes tras su primera compra.
+            <strong>Registro automático:</strong> Acceso instantáneo para clientes tras su primera compra, creación
+            automática de perfil de cliente.
           </li>
           <li>
-            <strong>Previews Interactivas:</strong> Previsualiza imágenes y documentos en baja resolución y con marca de
+            <strong>Previews interactivas:</strong> Previsualiza imágenes y documentos en baja resolución y con marca de
             agua para evitar uso inapropiado.
           </li>
           <li>
-            <strong>Descarga Segura Post-Pago:</strong> Enlaces únicos y protegidos para cada archivo.
+            <strong>Descarga segura post-pago:</strong> Enlaces únicos y protegidos para cada archivo.
           </li>
           <li>
-            <strong>Historial de Compras:</strong> Panel personal para acceder a todas las compras, descarga individual
+            <strong>Historial de compras:</strong> Panel personal para acceder a todas las compras, descarga individual
             y en lote.
           </li>
           <li>
-            <strong>Interfaz Responsive Móvil:</strong> Experiencia fluida en cualquier dispositivo.
+            <strong>Interfaz responsive:</strong> Experiencia fluida en cualquier dispositivo.
           </li>
         </ul>
       </ParallaxSection>
@@ -644,9 +643,9 @@ export default function YupayLanding() {
             className="text-center mb-16 animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Seguridad y Confianza en la Nube</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Seguridad y confianza en la nube</h2>
             <p className="mt-4 text-lg text-brand-gray-text max-w-3xl mx-auto">
-              Tu contenido y tus datos están protegidos con la última tecnología y las mejores prácticas.
+              Todos los contenidos y datos quedarán protegidos con la última tecnología y la mayor profesionalidad.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -674,9 +673,9 @@ export default function YupayLanding() {
             className="text-center mb-16 animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Ideal para Diversos Profesionales</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Ideal para diversos profesionales</h2>
             <p className="mt-4 text-lg text-brand-gray-text max-w-2xl mx-auto">
-              YUPAY se adapta a las necesidades de creadores y negocios de múltiples sectores.
+              YUPAY se adapta a las necesidades de profesionales y empresas de múltiples sectores.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
@@ -698,84 +697,127 @@ export default function YupayLanding() {
       <section id="pricing" className="py-16 md:py-24 bg-brand-gray-deep">
         <div className="container mx-auto px-6">
           <div
-            className="text-center mb-16 animate-on-scroll"
+            className="text-center mb-12 animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
             <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">
-              Planes Flexibles para Crecer Contigo
+              Planes flexibles para crecer contigo
             </h2>
             <p className="mt-4 text-lg text-brand-gray-text max-w-2xl mx-auto">
               Elige el plan que mejor se adapte a tu volumen y necesidades. ¡Sin comisiones ocultas!
             </p>
           </div>
-          <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch">
-            {plans.map((plan, index) => (
-              <Card
-                key={plan.id}
-                className={`flex flex-col bg-brand-gray-dark border text-brand-white shadow-custom-dark hover:shadow-custom-green transition-all duration-300 rounded-xl animate-on-scroll ${plan.highlight ? `border-brand-green ring-2 ring-brand-green ring-offset-2 ring-offset-brand-gray-deep` : "border-brand-gray-medium"}`}
-                style={{ "--initial-translate-y": "20px", animationDelay: `${index * 0.1}s` } as React.CSSProperties}
+
+          {/* Billing Cycle Toggle */}
+          <div
+            className="flex justify-center items-center mb-12 animate-on-scroll"
+            style={{ "--initial-translate-y": "20px", animationDelay: "0.1s" } as React.CSSProperties}
+          >
+            <div className="inline-flex bg-brand-gray-dark p-1 rounded-lg space-x-1">
+              <Button
+                onClick={() => setBillingCycle("monthly")}
+                className={`px-6 py-2 rounded-md text-sm font-semibold transition-colors duration-300 ${
+                  billingCycle === "monthly"
+                    ? "bg-brand-green text-brand-black"
+                    : "bg-transparent text-brand-gray-text hover:bg-brand-gray-light"
+                }`}
               >
-                <CardHeader className="text-center p-6">
-                  {plan.highlight && (
-                    <div className="text-xs font-semibold uppercase tracking-wider text-brand-green mb-2">
-                      Más Popular
-                    </div>
-                  )}
-                  <CardTitle className="text-2xl font-bold text-brand-white">{plan.name}</CardTitle>
-                  <CardDescription
-                    className={`text-4xl font-extrabold ${plan.highlight ? "text-brand-green" : "text-brand-white"} mt-2`}
-                  >
-                    {plan.price}
-                    {plan.priceDetails && (
-                      <span className="text-sm font-normal text-brand-gray-text">{plan.priceDetails}</span>
+                Mensual
+              </Button>
+              <div className="relative">
+                <Button
+                  onClick={() => setBillingCycle("annual")}
+                  className={`px-6 py-2 rounded-md text-sm font-semibold transition-colors duration-300 ${
+                    billingCycle === "annual"
+                      ? "bg-brand-green text-brand-black"
+                      : "bg-transparent text-brand-gray-text hover:bg-brand-gray-light"
+                  }`}
+                >
+                  Anual
+                </Button>
+                <div className="absolute -top-3 -right-4 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full transform rotate-12 pointer-events-none">
+                  ¡2 meses gratis!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch">
+            {plans.map((plan, index) => {
+              const isNumericPrice = plan.price.includes("€")
+              const monthlyPrice = isNumericPrice ? Number.parseInt(plan.price.replace("€", "")) : 0
+              const annualPrice = isNumericPrice ? monthlyPrice * 10 : 0
+
+              const displayPrice = billingCycle === "annual" && isNumericPrice ? `€${annualPrice}` : plan.price
+              const displayDetails = billingCycle === "annual" && isNumericPrice ? "/año" : plan.priceDetails
+
+              return (
+                <Card
+                  key={plan.id}
+                  className={`flex flex-col bg-brand-gray-dark border text-brand-white shadow-custom-dark hover:shadow-custom-green transition-all duration-300 rounded-xl animate-on-scroll ${plan.highlight ? `border-brand-green ring-2 ring-brand-green ring-offset-2 ring-offset-brand-gray-deep` : "border-brand-gray-medium"}`}
+                  style={{ "--initial-translate-y": "20px", animationDelay: `${index * 0.1}s` } as React.CSSProperties}
+                >
+                  <CardHeader className="text-center p-6">
+                    {plan.highlight && (
+                      <div className="text-xs font-semibold uppercase tracking-wider text-brand-green mb-2">
+                        Recomendado
+                      </div>
                     )}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow p-6 space-y-3">
-                  <ul className="space-y-3 text-sm">
-                    <li className="flex items-center text-brand-gray-text">
-                      <Package className="w-5 h-5 mr-3 text-brand-gray-text" /> Almacenamiento: {plan.storage}
-                    </li>
-                    <li className="flex items-center text-brand-gray-text">
-                      <Zap className="w-5 h-5 mr-3 text-brand-gray-text" /> Límite por Transacción:{" "}
-                      {plan.transactionLimit}
-                    </li>
-                    <li className="flex items-center text-brand-gray-text">
-                      <History className="w-5 h-5 mr-3 text-brand-gray-text" /> Retención de Archivos¹:{" "}
-                      {plan.fileRetention}
-                    </li>
-                    {plan.features.map((feature) => (
-                      <li key={feature.text} className="flex items-center text-brand-gray-text">
-                        {feature.icon ? (
-                          <span className="mr-3">{feature.icon}</span>
-                        ) : feature.included === true ? (
-                          <CheckCircle2 className="w-5 h-5 mr-3 text-brand-green" />
-                        ) : feature.included === false ? (
-                          <XCircle className="w-5 h-5 mr-3 text-red-500" />
-                        ) : (
-                          <Settings className="w-5 h-5 mr-3 text-sky-400" />
-                        )}
-                        {feature.text}
+                    <CardTitle className="text-2xl font-bold text-brand-white">{plan.name}</CardTitle>
+                    <CardDescription
+                      className={`text-4xl font-extrabold ${plan.highlight ? "text-brand-green" : "text-brand-white"} mt-2`}
+                    >
+                      {displayPrice}
+                      {displayDetails && (
+                        <span className="text-sm font-normal text-brand-gray-text">{displayDetails}</span>
+                      )}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex-grow p-6 space-y-3">
+                    <ul className="space-y-3 text-sm">
+                      <li className="flex items-center text-brand-gray-text">
+                        <Package className="w-5 h-5 mr-3 text-brand-gray-text" /> Almacenamiento: {plan.storage}
                       </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter className="p-6">
-                  <Button
-                    className={`w-full py-3 text-md rounded-md transition-colors duration-300 transform hover:scale-105 ${plan.highlight ? `${primaryButtonBase} ${primaryButtonHover}` : `bg-brand-gray-light text-brand-white ${primaryButtonHover}`}`}
-                    onClick={() => handleRequestPlan(plan)}
-                  >
-                    {plan.id === "enterprise" ? "Contactar para Presupuesto" : "Solicitar Plan"}
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
+                      <li className="flex items-center text-brand-gray-text">
+                        <Zap className="w-5 h-5 mr-3 text-brand-gray-text" /> Límite por transacción:{" "}
+                        {plan.transactionLimit}
+                      </li>
+                      <li className="flex items-center text-brand-gray-text">
+                        <History className="w-5 h-5 mr-3 text-brand-gray-text" /> Retención de archivos¹:{" "}
+                        {plan.fileRetention}
+                      </li>
+                      {plan.features.map((feature) => (
+                        <li key={feature.text} className="flex items-center text-brand-gray-text">
+                          {feature.icon ? (
+                            <span className="mr-3">{feature.icon}</span>
+                          ) : feature.included === true ? (
+                            <CheckCircle2 className="w-5 h-5 mr-3 text-brand-green" />
+                          ) : feature.included === false ? (
+                            <XCircle className="w-5 h-5 mr-3 text-red-500" />
+                          ) : (
+                            <Settings className="w-5 h-5 mr-3 text-sky-400" />
+                          )}
+                          {feature.text}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                  <CardFooter className="p-6">
+                    <Button
+                      className={`w-full py-3 text-md rounded-md transition-colors duration-300 transform hover:scale-105 ${plan.highlight ? `${primaryButtonBase} ${primaryButtonHover}` : `bg-brand-gray-light text-brand-white ${primaryButtonHover}`}`}
+                      onClick={() => handleRequestPlan(plan)}
+                    >
+                      {plan.id === "enterprise" ? "Contactar para Presupuesto" : "Solicitar Plan"}
+                    </Button>
+                  </CardFooter>
+                </Card>
+              )
+            })}
           </div>
           <div
             className="mt-10 text-center text-sm text-brand-gray-text animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
-            <p>Todos los planes de pago anual ofrecen un descuento (¡2 meses gratis!).</p>
             <p className="mt-1">
               ¹ La retención de archivos indica el tiempo que los archivos de una transacción permanecen disponibles
               para el cliente después de la compra antes de ser eliminados automáticamente para liberar espacio.
@@ -791,7 +833,7 @@ export default function YupayLanding() {
             className="text-center mb-16 animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Preguntas Frecuentes</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Preguntas frecuentes</h2>
             <p className="mt-4 text-lg text-brand-gray-text max-w-2xl mx-auto">
               Resolvemos algunas de las dudas más comunes sobre YUPAY.
             </p>
@@ -849,7 +891,7 @@ export default function YupayLanding() {
             className="text-center mb-16 animate-on-scroll"
             style={{ "--initial-translate-y": "20px" } as React.CSSProperties}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Tecnología de Vanguardia</h2>
+            <h2 className="text-3xl md:text-4xl font-semibold text-brand-white">Tecnología de vanguardia</h2>
             <p className="mt-4 text-lg text-brand-gray-text max-w-xl mx-auto">
               Construido con herramientas modernas para ofrecerte la mejor experiencia, rendimiento y seguridad.
             </p>
