@@ -6,12 +6,15 @@ import { z } from "zod"
 // Define schema for form data validation
 const FormDataSchema = z.object({
   planSeleccionado: z.string().min(1, "Plan es requerido"),
+  cicloFacturacion: z.enum(["monthly", "annual"]),
   nombre: z.string().min(1, "Nombre es requerido"),
   apellidos: z.string().min(1, "Apellidos son requeridos"),
   sector: z.string().min(1, "Sector es requerido"),
   sectorOtros: z.string().optional(),
   correoElectronico: z.string().email("Correo electrónico inválido"),
   telefono: z.string().min(1, "Teléfono es requerido"),
+  metodosContacto: z.array(z.string()).min(1, "Debes seleccionar al menos un método de contacto"),
+  codigoReferido: z.string().optional(),
   facturacionNombreEmpresa: z.string().min(1, "Nombre o empresa de facturación es requerido"),
   facturacionNifCif: z.string().min(1, "NIF/CIF es requerido"),
   facturacionDireccion1: z.string().min(1, "Dirección de facturación es requerida"),
@@ -43,7 +46,7 @@ export async function sendPlanRequestEmail(data: FormData) {
     EMAIL_USER,
     EMAIL_PASSWORD,
     EMAIL_SENDER_NAME,
-    EMAIL_RECIPIENT, 
+    EMAIL_RECIPIENT, // Target email: alamas@dro.studio
   } = process.env
 
   if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USER || !EMAIL_PASSWORD || !EMAIL_SENDER_NAME || !EMAIL_RECIPIENT) {
@@ -73,13 +76,18 @@ export async function sendPlanRequestEmail(data: FormData) {
     html: `
       <h1>Nueva Solicitud de Plan YUPAY</h1>
       <p><strong>Plan Seleccionado:</strong> ${validatedData.planSeleccionado}</p>
+      <p><strong>Ciclo de Facturación:</strong> ${validatedData.cicloFacturacion === "annual" ? "Anual" : "Mensual"}</p>
+      ${validatedData.codigoReferido ? `<p><strong>Código de Referido:</strong> ${validatedData.codigoReferido}</p>` : ""}
+      
       <h2>Datos del Solicitante:</h2>
       <ul>
         <li><strong>Nombre Completo:</strong> ${validatedData.nombre} ${validatedData.apellidos}</li>
         <li><strong>Correo Electrónico:</strong> ${validatedData.correoElectronico}</li>
         <li><strong>Teléfono:</strong> ${validatedData.telefono}</li>
         <li><strong>Sector:</strong> ${sectorDisplay}</li>
+        <li><strong>Preferencia de Contacto:</strong> ${validatedData.metodosContacto.join(", ")}</li>
       </ul>
+      
       <h2>Datos de Facturación:</h2>
       <ul>
         <li><strong>Nombre o Empresa:</strong> ${validatedData.facturacionNombreEmpresa}</li>
@@ -91,6 +99,7 @@ export async function sendPlanRequestEmail(data: FormData) {
         <li><strong>Provincia:</strong> ${validatedData.facturacionProvincia}</li>
         <li><strong>País:</strong> ${validatedData.facturacionPais}</li>
       </ul>
+      
       <h2>Instalación:</h2>
       <p><strong>Dominio/Subdominio para instalación YUPAY:</strong> ${validatedData.dominioSubdominio}</p>
       <p><strong>Aceptó Aviso Legal:</strong> ${validatedData.aceptacionAvisoLegal ? "Sí" : "No"}</p>

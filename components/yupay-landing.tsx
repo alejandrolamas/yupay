@@ -935,7 +935,7 @@ export default function YupayLanding() {
               </DialogDescription>
             </DialogHeader>
             <div className="p-6">
-              <RequestModal plan={selectedPlan} onClose={() => setIsModalOpen(false)} />
+              <RequestModal plan={selectedPlan} billingCycle={billingCycle} onClose={() => setIsModalOpen(false)} />
             </div>
           </DialogContent>
         </Dialog>

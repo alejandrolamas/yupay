@@ -8,8 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useToast } from "@/hooks/use-toast"
-import { sendPlanRequestEmail, type FormData as EmailFormData } from "@/app/actions/send-request-email"
-
+import type { FormData as EmailFormData } from "@/app/actions/send-request-email"
 
 interface Plan {
   id: string
@@ -23,6 +22,7 @@ interface Plan {
 
 interface RequestModalProps {
   plan: Plan
+  billingCycle: "monthly" | "annual"
   onClose: () => void
 }
 
@@ -33,17 +33,23 @@ const inputBaseClass =
   "bg-brand-gray-dark border-brand-gray-medium text-brand-white placeholder:text-brand-gray-text focus:border-brand-green focus:ring-brand-green rounded-md"
 const labelBaseClass = "text-brand-gray-text"
 
-export default function RequestModal({ plan, onClose }: RequestModalProps) {
+export default function RequestModal({ plan, billingCycle, onClose }: RequestModalProps) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submissionSuccess, setSubmissionSuccess] = useState(false)
-  const [formData, setFormData] = useState<Omit<EmailFormData, "planSeleccionado">>({
+  const [formData, setFormData] = useState<
+    Omit<EmailFormData, "planSeleccionado" | "cicloFacturacion" | "aceptacionAvisoLegal"> & {
+      aceptacionAvisoLegal: boolean
+    }
+  >({
     nombre: "",
     apellidos: "",
     sector: "",
     sectorOtros: "",
     correoElectronico: "",
     telefono: "",
+    metodosContacto: [],
+    codigoReferido: "",
     facturacionNombreEmpresa: "",
     facturacionNifCif: "",
     facturacionDireccion1: "",
@@ -58,13 +64,23 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
   const [showSectorOtros, setShowSectorOtros] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target
-    if (type === "checkbox") {
-      const { checked } = e.target as HTMLInputElement
-      setFormData((prev) => ({ ...prev, [name]: checked }))
+    const { name, value } = e.target
+    if (name === "codigoReferido") {
+      setFormData((prev) => ({ ...prev, [name]: value.toUpperCase().replace(/\s/g, "") }))
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
+  }
+
+  const handleContactMethodChange = (method: string) => {
+    setFormData((prev) => {
+      const currentMethods = prev.metodosContacto
+      if (currentMethods.includes(method)) {
+        return { ...prev, metodosContacto: currentMethods.filter((m) => m !== method) }
+      } else {
+        return { ...prev, metodosContacto: [...currentMethods, method] }
+      }
+    })
   }
 
   const handleSelectChange = (name: string, value: string) => {
@@ -88,24 +104,44 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
       })
       return
     }
+    if (formData.metodosContacto.length === 0) {
+      toast({
+        title: "Error de Validación",
+        description: "Debes seleccionar al menos un método de contacto.",
+        variant: "destructive",
+        className: "bg-red-700 border-red-800 text-white",
+      })
+      return
+    }
+
     setIsSubmitting(true)
     try {
-      const fullFormData: EmailFormData = { ...formData, planSeleccionado: plan.name }
+      const fullFormData: EmailFormData = {
+        ...formData,
+        planSeleccionado: plan.name,
+        cicloFacturacion: billingCycle,
+      }
       const response = await fetch("/api/send-plan-request", {
-		  method: "POST",
-		  headers: {
-			"Content-Type": "application/json",
-		  },
-		  body: JSON.stringify(fullFormData),
-		})
-		const result = await response.json()
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fullFormData),
+      })
+      const result = await response.json()
 
       if (result.success) {
-		  setSubmissionSuccess(true)
-		  // También puedes limpiar el formulario si quieres:
-		  // setFormData({...formDataInicial})
-		  return
-		}
+        setSubmissionSuccess(true)
+        return
+      } else {
+        toast({
+          title: "Error al Enviar Solicitud",
+          description:
+            result.error || "No se pudo enviar tu solicitud. Por favor, revisa los datos e inténtalo de nuevo.",
+          variant: "destructive",
+          className: "bg-red-700 border-red-800 text-white",
+        })
+      }
     } catch (error: any) {
       toast({
         title: "Error al Enviar Solicitud",
@@ -120,6 +156,8 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
     }
   }
 
+  const contactOptions = ["Whatsapp", "Teléfono", "Correo electrónico"]
+
   return (
     <div className="space-y-6">
       <p className="text-sm text-brand-gray-text">
@@ -127,17 +165,31 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
         para guiarte en todo el proceso y confirmar los detalles.
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <Label htmlFor="planSeleccionado" className={labelBaseClass}>
-            Plan Seleccionado
-          </Label>
-          <Input
-            id="planSeleccionado"
-            name="planSeleccionado"
-            value={plan.name}
-            readOnly
-            className={`mt-1 ${inputBaseClass} bg-brand-gray-medium cursor-not-allowed opacity-70`}
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <Label htmlFor="planSeleccionado" className={labelBaseClass}>
+              Plan Seleccionado
+            </Label>
+            <Input
+              id="planSeleccionado"
+              name="planSeleccionado"
+              value={plan.name}
+              readOnly
+              className={`mt-1 ${inputBaseClass} bg-brand-gray-medium cursor-not-allowed opacity-70`}
+            />
+          </div>
+          <div>
+            <Label htmlFor="cicloFacturacion" className={labelBaseClass}>
+              Ciclo de Facturación
+            </Label>
+            <Input
+              id="cicloFacturacion"
+              name="cicloFacturacion"
+              value={billingCycle === "annual" ? "Anual" : "Mensual"}
+              readOnly
+              className={`mt-1 ${inputBaseClass} bg-brand-gray-medium cursor-not-allowed opacity-70`}
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -169,43 +221,44 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
           </div>
         </div>
 
-        <div>
-          <Label htmlFor="sector" className={labelBaseClass}>
-            Sector <span className="text-brand-green">*</span>
-          </Label>
-          <Select name="sector" onValueChange={(value) => handleSelectChange("sector", value)} required>
-            <SelectTrigger className={`mt-1 ${inputBaseClass} text-brand-white`}>
-              <SelectValue placeholder="Selecciona tu sector" />
-            </SelectTrigger>
-            <SelectContent className="bg-brand-gray-dark border-brand-gray-medium text-brand-white">
-              {["Agencia", "Fotógrafo/a", "Diseñador/a", "Influencer", "Educador/a", "Otros"].map((item) => (
-                <SelectItem
-                  key={item}
-                  value={item.toLowerCase().replace(/[\s/]/g, "_")}
-                  className="hover:!bg-brand-green hover:!text-brand-black focus:!bg-brand-green focus:!text-brand-black data-[state=checked]:bg-brand-green data-[state=checked]:text-brand-black"
-                >
-                  {item}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {showSectorOtros && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="sectorOtros" className={labelBaseClass}>
-              Especifica tu sector <span className="text-brand-green">*</span>
+            <Label htmlFor="sector" className={labelBaseClass}>
+              Sector <span className="text-brand-green">*</span>
             </Label>
-            <Input
-              id="sectorOtros"
-              name="sectorOtros"
-              value={formData.sectorOtros}
-              onChange={handleChange}
-              required={showSectorOtros}
-              className={`mt-1 ${inputBaseClass}`}
-            />
+            <Select name="sector" onValueChange={(value) => handleSelectChange("sector", value)} required>
+              <SelectTrigger className={`mt-1 ${inputBaseClass} text-brand-white`}>
+                <SelectValue placeholder="Selecciona tu sector" />
+              </SelectTrigger>
+              <SelectContent className="bg-brand-gray-dark border-brand-gray-medium text-brand-white">
+                {["Agencia", "Fotógrafo/a", "Diseñador/a", "Influencer", "Educador/a", "Otros"].map((item) => (
+                  <SelectItem
+                    key={item}
+                    value={item.toLowerCase().replace(/[\s/]/g, "_")}
+                    className="hover:!bg-brand-green hover:!text-brand-black focus:!bg-brand-green focus:!text-brand-black data-[state=checked]:bg-brand-green data-[state=checked]:text-brand-black"
+                  >
+                    {item}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-        )}
+          {showSectorOtros && (
+            <div>
+              <Label htmlFor="sectorOtros" className={labelBaseClass}>
+                Especifica tu sector <span className="text-brand-green">*</span>
+              </Label>
+              <Input
+                id="sectorOtros"
+                name="sectorOtros"
+                value={formData.sectorOtros}
+                onChange={handleChange}
+                required={showSectorOtros}
+                className={`mt-1 ${inputBaseClass}`}
+              />
+            </div>
+          )}
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -236,6 +289,40 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
               className={`mt-1 ${inputBaseClass}`}
             />
           </div>
+        </div>
+
+        <div>
+          <Label className={labelBaseClass}>
+            ¿Cómo quieres que hablemos? <span className="text-brand-green">*</span>
+          </Label>
+          <div className="mt-2 flex flex-wrap gap-4">
+            {contactOptions.map((option) => (
+              <div key={option} className="flex items-center space-x-2">
+                <Checkbox
+                  id={`contact-${option}`}
+                  checked={formData.metodosContacto.includes(option)}
+                  onCheckedChange={() => handleContactMethodChange(option)}
+                  className="border-brand-gray-medium data-[state=checked]:bg-brand-green data-[state=checked]:text-brand-black data-[state=checked]:border-brand-green"
+                />
+                <Label htmlFor={`contact-${option}`} className={`${labelBaseClass} font-normal`}>
+                  {option}
+                </Label>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <Label htmlFor="codigoReferido" className={labelBaseClass}>
+            ¿Tienes un código referido?
+          </Label>
+          <Input
+            id="codigoReferido"
+            name="codigoReferido"
+            value={formData.codigoReferido}
+            onChange={handleChange}
+            className={`mt-1 ${inputBaseClass}`}
+          />
         </div>
 
         <h3 className="text-lg font-medium pt-4 border-t border-brand-gray-medium mt-6 text-brand-white">
@@ -374,9 +461,9 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
             checked={formData.aceptacionAvisoLegal}
             onCheckedChange={(checked) =>
               setFormData((prev) => ({
-				  ...prev,
-				  aceptacionAvisoLegal: Boolean(checked),
-				}))
+                ...prev,
+                aceptacionAvisoLegal: Boolean(checked),
+              }))
             }
             className="border-brand-gray-medium data-[state=checked]:bg-brand-green data-[state=checked]:text-brand-black data-[state=checked]:border-brand-green"
           />
@@ -412,11 +499,11 @@ export default function RequestModal({ plan, onClose }: RequestModalProps) {
             {isSubmitting ? "Enviando..." : "Enviar Solicitud"}
           </Button>
         </div>
-		  {submissionSuccess && (
-			  <div className="mt-6 p-4 bg-brand-gray-medium border border-brand-green rounded-md text-white text-center text-sm">
-				  ✅ Tu solicitud ha sido enviada correctamente. Un agente se pondrá en contacto contigo pronto.
-			  </div>
-		  )}
+        {submissionSuccess && (
+          <div className="mt-6 p-4 bg-brand-gray-medium border border-brand-green rounded-md text-white text-center text-sm">
+            ✅ Tu solicitud ha sido enviada correctamente. Un agente se pondrá en contacto contigo pronto.
+          </div>
+        )}
       </form>
     </div>
   )
